@@ -3,6 +3,7 @@ package game.pieces;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.util.Objects;
 
@@ -12,9 +13,11 @@ public abstract class Piece {
     protected String id;
     protected Color color;
     protected int x, y;
+    protected boolean selected = false;
 
     public Piece(String _id, String pieceType, Color _color, int _x, int _y)
     {
+        this.id = _id;
         this.color = _color;
         this.x = _x;
         this.y = _y;
@@ -26,10 +29,15 @@ public abstract class Piece {
             this.src = new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/black_".concat(pieceType) + ".png")));
         }
         this.img = new ImageView(src);
+
+        this.img.setOnMouseClicked(mouseEvent -> {
+            System.out.println(this.color +  " " + this.getX() + this.getY());
+            selected = true;
+        });
     }
 
-    public String getId() {
-        return id;
+    public boolean isSelected() {
+        return selected;
     }
 
     public ImageView getImg()
@@ -47,5 +55,7 @@ public abstract class Piece {
         return this.y;
     }
 
-    public abstract void move();
+
+
+    public abstract void move(int x, int y);
 }

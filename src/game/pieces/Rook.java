@@ -13,7 +13,7 @@ public class Rook extends Piece{
     }
 
     @Override
-    public void move() {
+    public void move(int x, int y) {
 
     }
 

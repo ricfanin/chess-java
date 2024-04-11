@@ -15,7 +15,44 @@ public class Pawn extends Piece {
 
 
     @Override
-    public void move() {
+    public void move(int x, int y) {
+        if(this.color == Color.WHITE){
+            if(this.getY() == 1)
+            {
+                if(y - this.getY() <= 2 && y - this.getY() >= 1 && x - this.getX() == 0)
+                {
+                    this.x = x;
+                    this.y = y;
+                }
+            }
+            else {
+                if(y - this.getY() == 1 && x - this.getX() == 0)
+                {
+                    this.x = x;
+                    this.y = y;
+                }
+            }
+        }
+        else
+        {
+            if(this.getY() == 6)
+            {
+                if(this.getY() - y <= 2 && this.getY() -y >= 1 && this.getX() - x == 0)
+                {
+                    this.x = x;
+                    this.y = y;
+                }
+            }
+            else {
+                if(this.getY() - y == 1 && this.getX() - x == 0)
+                {
+                    this.x = x;
+                    this.y = y;
+                }
+            }
+        }
+
+        this.selected = false;
 
     }
 }
